@@ -15,7 +15,6 @@ def calEvolutionMatrix(AdjacentMatrix):
                 
 AdjacentMatrix=[[0,1,1,1,0],[1,0,0,0,1],[1,0,0,1,0],[1,0,1,0,1],[0,1,0,1,0]]
 p=0.1
-probability=[1-(1-p)**i for i in range(len(AdjacentMatrix))]
 evolutionMatrix=calEvolutionMatrix(AdjacentMatrix)
 
 InitialState=np.zeros((2**len(AdjacentMatrix)))
