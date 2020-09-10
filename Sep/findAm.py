@@ -24,5 +24,23 @@ def generateRelationMap(data,dimension):
             index+=1
     return RelationMap
 
-print(dataset[1])
-print(generateRelationMap(dataset[1],9))
+def generate3cycleSet(RelationMap):
+    dimension=len(RelationMap)
+    cycleSet=[]
+    for i in range(dimension):
+        for j in range(i):
+            for k in range(j):
+                if(RelationMap[i][j]==RelationMap[j][k] and RelationMap[j][k]==RelationMap[k][i]):
+                    cycleSet.append([i,j,k])
+    return cycleSet
+
+def generateProfile(RelationMap):
+    dimension=len(RelationMap)
+    return 1
+
+RelationMap=generateRelationMap(dataset[1],9)
+cycleSet=generate3cycleSet(RelationMap)
+print(cycleSet)
+#print(generateProfile(RelationMap))
+
+
