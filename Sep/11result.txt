@@ -1,0 +1,20 @@
+for data 209 In total 3
+for data 210 In total 3
+for data 306 In total 11
+for data 430 In total 5
+for data 492 In total 5
+for data 532 In total 5
+for data 564 In total 3
+for data 602 In total 3
+for data 603 In total 3
+for data 612 In total 5
+for data 637 In total 55
+[[0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0], [0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0], [0, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1], [0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1], [0, 1, 1, 0, 0, 0, 0, 1, 0, 1, 1], [0, 1, 0, 0, 1, 0, 1, 0, 1, 1, 0], [1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0], [1, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0], [1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1], [1, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1], [1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0]]
+[[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]]
+for data 733 In total 5
+for data 859 In total 5
+for data 901 In total 9
+for data 902 In total 3
+for data 912 In total 5
+for data 1067 In total 11
+for data 1222 In total 11
