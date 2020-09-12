@@ -1,4 +1,5 @@
-#import numpy as np
+import numpy as np
+from itertools import permutations
 dataset = [
     111100001110001101011101110111000000, 111100001011010110101001111011100101,
     111100001110010101101110110111100101, 111100001111000101011101110111100101,
@@ -54,26 +55,67 @@ def generateProfile(cycleSet,edgeProfile):
     profile=[]
     dimension=len(edgeProfile)
     for i in range(dimension):
-        profileOfVertice=[]
+        profileOfVertice={}
         for cycle in cycleSet:
             if i in cycle:
                 ind=cycle.index(i)
                 np=cycle[(ind+1)%3]
                 pp=cycle[(ind+2)%3]
-                profileOfVertice.append([edgeProfile[i][np],edgeProfile[np][pp],edgeProfile[pp][i]])
+                triple=(edgeProfile[i][np],edgeProfile[np][pp],edgeProfile[pp][i])
+                if triple in profileOfVertice:
+                    profileOfVertice[triple]+=1
+                else:
+                    profileOfVertice[triple]=1
         profile.append(profileOfVertice)
     return profile
+
+def generatePointProfile(profile):
+    pointProfile=[]
+    evaluated=[]
+    for i, p in enumerate(profile):
+        if not i in evaluated:
+         groupi=[i]
+         evaluated.append(i)
+         for j,q in enumerate(profile):
+            if(p==q and i!=j):
+                groupi.append(j)
+                evaluated.append(j)
+         pointProfile.append(groupi)
+    return pointProfile
+
+def searchAm(groupIndex,pointProfile,RelationMap,permIndex,amCount):
+    if groupIndex >= len(pointProfile):
+        dimension=len(RelationMap)
+        permMap=[[0 for x in range(dimension)] for x in range(dimension)]
+        for i in range(dimension):
+            for j in range(dimension):
+                permMap[permIndex[i]][permIndex[j]]=RelationMap[i][j]
+        if permMap==RelationMap:
+            amCount+=1
+            print("AM:",amCount,permIndex)
+        return amCount
+    else:
+        group=pointProfile[groupIndex]
+        permList=list(permutations(group))
+        for perm in permList:
+            for i,point in enumerate(group):
+                permIndex[point]=perm[i]
+            amCount=searchAm(groupIndex+1,pointProfile,RelationMap,permIndex,amCount)
+        return amCount
+
 
 for i in range(15):
   RelationMap=generateRelationMap(dataset[i],9)
   cycleSet=generate3cycleSet(RelationMap)
-  print(len(cycleSet))
+  print(i,len(cycleSet))
   edgeProfile=generateEdgeProfile(cycleSet,len(RelationMap))
-  #print(edgeProfile)
   profile=generateProfile(cycleSet,edgeProfile)
-
-  for vertice in profile:
-    print(vertice)
-  print("next one")
+  pointProfile=generatePointProfile(profile)
+  print(np.array(RelationMap))
+  permIndex=list(range(len(RelationMap)))
+  amCount=searchAm(0,pointProfile,RelationMap,permIndex,0)
+  print("In total",amCount)
+  print(pointProfile)
+ 
 
 
